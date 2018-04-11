@@ -11,8 +11,15 @@ It:
 
 Installing
 ==========================
+Update composer.json:
 ```bash
 composer require mkijak/cronjob-commands-bundle
+```
+Enable the bundle in Symfony application:
+```php
+# config/bundles.php 
+
+Mkijak\CronJobCommandsBundle\CronJobCommandsBundle::class => ['all' => true],
 ```
 
 Configuration
