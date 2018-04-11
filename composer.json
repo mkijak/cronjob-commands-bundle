@@ -1,0 +1,24 @@
+{
+    "name": "mkijak/cronjob-commands-bundle",
+    "description": "Runs (or not) registered Symfony commands according to cron expressions",
+    "keywords": ["symfony", "command", "cron", "schedule"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.1",
+        "dragonmantank/cron-expression": "~2.1",
+        "symfony/framework-bundle": "~4.0",
+        "symfony/console": "~4.0"
+    },
+    "authors": [
+        {
+            "name": "Marcin Kijak",
+            "email": "kijak.marcin@gmail.com",
+            "homepage": "https://github.com/mkijak"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mkijak\\CronJobCommandsBundle\\": "src/"
+        }
+    }
+}

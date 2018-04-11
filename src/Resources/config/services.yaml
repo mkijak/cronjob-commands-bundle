@@ -1,0 +1,30 @@
+services:
+    Mkijak\CronJobCommandsBundle\CronJob\Config\Config:
+        class: Mkijak\CronJobCommandsBundle\CronJob\Config\Config
+        public: false
+        arguments:
+            $timezone: 'UTC'
+            $commands: []
+
+    Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner:
+        class: Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner
+        public: false
+
+    Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule:
+        class: Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule
+        public: false
+        arguments:
+            $config: '@Mkijak\CronJobCommandsBundle\CronJob\Config\Config'
+
+    Mkijak\CronJobCommandsBundle\CronJob\CronJobCommands:
+        class: Mkijak\CronJobCommandsBundle\CronJob\CronJobCommands
+        public: true
+        arguments:
+            $config: '@Mkijak\CronJobCommandsBundle\CronJob\Config\Config'
+            $commandSchedule: '@Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule'
+            $commandRunner: '@Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner'
+
+    Mkijak\CronJobCommandsBundle\Command\CronTriggerCommand:
+        class: Mkijak\CronJobCommandsBundle\Command\CronTriggerCommand
+        tags:
+            - { name: 'console.command', command: 'cron_commands:trigger' }
