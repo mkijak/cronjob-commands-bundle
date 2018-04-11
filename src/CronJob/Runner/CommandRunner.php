@@ -2,12 +2,12 @@
 
 namespace Mkijak\CronJobCommandsBundle\CronJob\Runner;
 
-use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
-use Symfony\Component\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tests\Fixtures\DummyOutput;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * "In comparison with a direct call from the console,
@@ -21,9 +21,9 @@ final class CommandRunner
      */
     private $console;
 
-    public function __construct()
+    public function __construct(KernelInterface $kernel)
     {
-        $this->console = new Application();
+        $this->console = new Application($kernel);
         $this->console->setAutoExit(false);
     }
 
@@ -33,20 +33,10 @@ final class CommandRunner
      * @param array $arguments      ['argument-name' => 'argument-value', 'argument2-name' => 'argument2-value']
      * @param array $options        ['--option-name' => 'option-value', '--option2-name' => 'option2-value']
      *
-     * @throws InvalidConfigurationException
-     *
      * @return void
      */
-    public function run(string $commandClass, string $commandName, array $arguments = [], array $options = [], OutputInterface $output)
+    public function run(string $commandName, array $arguments = [], array $options = [], OutputInterface $output)
     {
-        if (!class_exists($commandClass)) {
-            throw new InvalidConfigurationException(
-                sprintf('Cannot instantiate class [%s]. Remember to provide a fully-qualified class name.', $commandClass)
-            );
-        }
-
-        $this->console->add(new $commandClass());
-
         $commandParamPart = ['command' => $commandName];
         $params = array_merge($commandParamPart, $arguments, $options);
 

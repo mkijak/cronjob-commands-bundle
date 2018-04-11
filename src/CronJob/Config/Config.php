@@ -62,7 +62,7 @@ final class Config
             $opts[] = new CommandOption($name, $value);;
         }
 
-        return new Command($array['class'], $array['name'], $array['cron_expression'], $args, $opts);
+        return new Command($array['name'], $array['cron_expression'], $args, $opts);
     }
 
     private function validateConfig()

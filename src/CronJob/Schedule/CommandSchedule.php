@@ -41,8 +41,8 @@ final class CommandSchedule
     private function isDue(Command $command, \DateTime $time)
     {
         if (!CronExpression::isValidExpression($command->getCronExpr())) {
-            $this->output->writeln(sprintf('<error>[%s] is not a valid cron expression [%s (%s)]</error>',
-                $command->getCronExpr(), $command->getClass(), $command->getName()), OutputInterface::VERBOSITY_QUIET);
+            $this->output->writeln(sprintf('<error>[%s] is not a valid cron expression (%s)</error>',
+                $command->getCronExpr(), $command->getName()), OutputInterface::VERBOSITY_QUIET);
 
             return false;
         }
@@ -50,14 +50,12 @@ final class CommandSchedule
         $exprInterpreter = CronExpression::factory($command->getCronExpr());
 
         if (!$exprInterpreter->isDue($time)) {
-            $this->output->writeln(sprintf('%s (%s) will be skipped [%s]',
-                $command->getClass(), $command->getName(), $command->getCronExpr()));
+            $this->output->writeln(sprintf('%s will be skipped [%s]', $command->getName(), $command->getCronExpr()));
 
             return false;
         }
 
-        $this->output->writeln(sprintf('%s (%s) will be ran [%s]',
-            $command->getClass(), $command->getName(), $command->getCronExpr()));
+        $this->output->writeln(sprintf('%s will be ran [%s]', $command->getName(), $command->getCronExpr()));
 
         return true;
     }

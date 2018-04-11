@@ -9,6 +9,8 @@ services:
     Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner:
         class: Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner
         public: false
+        arguments:
+            $kernel: '@kernel'
 
     Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule:
         class: Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule

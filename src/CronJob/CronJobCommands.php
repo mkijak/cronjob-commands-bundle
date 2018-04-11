@@ -71,7 +71,7 @@ final class CronJobCommands
     private function runCommand(Command $command)
     {
         $this->output->writeln('');
-        $this->output->writeln(sprintf('<bg=yellow;options=bold>%s</> (%s)', $command->getClass(), $command->getName()));
+        $this->output->writeln(sprintf('<bg=yellow;options=bold>%s</>', $command->getName()));
 
         $argsAsArray = $optsAsArray = [];
 
@@ -86,8 +86,7 @@ final class CronJobCommands
         }
 
         try {
-            $this->commandRunner->run($command->getClass(),
-                $command->getName(), $argsAsArray, $optsAsArray, $this->output);
+            $this->commandRunner->run($command->getName(), $argsAsArray, $optsAsArray, $this->output);
         } catch (\Exception $exception) {
             $this->output->writeln(
                 sprintf('<error>Exception [%s]: %s</error>', get_class($exception), $exception->getMessage()),

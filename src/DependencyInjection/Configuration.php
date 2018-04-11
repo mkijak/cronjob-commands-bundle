@@ -18,7 +18,6 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('schedule')
                     ->prototype('array')
                         ->children()
-                            ->scalarNode('class')->cannotBeEmpty()->end()
                             ->scalarNode('name')->cannotBeEmpty()->end()
                             ->scalarNode('cron_expression')->cannotBeEmpty()->end()
                             ->arrayNode('arguments')

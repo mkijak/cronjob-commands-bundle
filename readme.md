@@ -32,8 +32,7 @@ cron_job_commands:
     timezone: UTC
     schedule:
         command1:
-            class: App\Command\Command #PHP class name
-            name: app:command #command name
+            name: app:command
             cron_expression: "* * * * *" #supports also predefined keywords e. g. "@daily", see https://github.com/dragonmantank/cron-expression
             arguments:
                 argument1name: value
@@ -42,7 +41,6 @@ cron_job_commands:
                 option1name: value
                 option2name: value
         command2:
-            class: App\Command\AnotherCommand
             name: app:another_command
             cron_expression: "@daily"
 ```
