@@ -4,7 +4,7 @@ Symfony commands as cron jobs
 Using this bundle you can manage cron jobs using yaml configuration of your Symfony application.
 
 It: 
-* provides simple way of running commands according to cron expressions
+* provides a simple way of running commands according to cron expressions
 * supports command arguments, options and verbosity settings
 * prints full output of running commands
 * uses https://github.com/dragonmantank/cron-expression to resolve cron expressions
@@ -24,7 +24,7 @@ Mkijak\CronJobCommandsBundle\CronJobCommandsBundle::class => ['all' => true],
 
 Configuration
 ==========================
-It is recommended to set timezone (default is UTC and server settings aren't considered).
+It is recommended to set the timezone (default timezone is UTC and server settings aren't considered).
 
 ``` yaml
 # config/packages/cron_job_commands.yaml
@@ -47,13 +47,15 @@ cron_job_commands:
 
 Usage
 ==========================
-Run trigger-command once per minute. Consider using quiet mode for less output. Add to crontab (`crontab -e`):
+Run the "trigger-command" once per minute. Consider using quiet mode for less output. 
+
+For cron: add to crontab (`crontab -e`):
 
 ```bash
 * * * * * /path/to/symfony/bin/console cron_commands:trigger -q
 ```
 
-In quiet mode you can still display some messages from your commands setting visibility level in second parameter of writeln function (or 3rd parameter of write function):
+In the quiet mode you can still display some messages from your commands setting visibility level as a second parameter of the writeln function (or 3rd parameter of the write function):
 
 ``` php
 use Symfony\Component\Console\Output\OutputInterface;
@@ -70,4 +72,4 @@ Requirements
 
 Licence
 ==========================
-Symfony commands as cron jobs is licenced under the MIT Licence.
+_Symfony commands as cron jobs_ is licenced under the MIT Licence.
