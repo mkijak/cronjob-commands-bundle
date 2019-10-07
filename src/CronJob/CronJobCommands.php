@@ -47,7 +47,7 @@ final class CronJobCommands
     /**
      * @param \DateTime|null $timeToCheckAgainst     By default 'now' but you can set any time you want
      * @param OutputInterface|null $output           If set to null DummyOutput will be used -
-     *                                               you won't even see exceptions thrown by run commands
+     *                                               you won't even see exceptions thrown by the commands
      */
     public function runCommands(\DateTime $timeToCheckAgainst = null, OutputInterface $output = null)
     {
@@ -57,7 +57,7 @@ final class CronJobCommands
 
         $time = $timeToCheckAgainst ?: new \DateTime('now', new \DateTimeZone($this->config->timezone()));
 
-        $this->output->writeln(PHP_EOL . sprintf('<info>!! CronJobCommands starts here !!</info>' . PHP_EOL));
+        $this->output->writeln(PHP_EOL . sprintf('<info>CronJobCommands</info>' . PHP_EOL));
         $this->output->writeln(sprintf('Time (%s): %s',
             $this->config->timezone(), $time->format('Y-m-d H:i:s')));
 
