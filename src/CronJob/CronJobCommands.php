@@ -47,7 +47,7 @@ final class CronJobCommands
     /**
      * @param \DateTime|null $timeToCheckAgainst     By default 'now' but you can set any time you want
      * @param OutputInterface|null $output           If set to null DummyOutput will be used -
-     *                                               you won't even see exceptions thrown by ran commands
+     *                                               you won't even see exceptions thrown by run commands
      */
     public function runCommands(\DateTime $timeToCheckAgainst = null, OutputInterface $output = null)
     {

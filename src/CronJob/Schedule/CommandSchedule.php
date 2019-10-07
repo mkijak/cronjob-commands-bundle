@@ -55,7 +55,7 @@ final class CommandSchedule
             return false;
         }
 
-        $this->output->writeln(sprintf('%s will be ran [%s]', $command->getName(), $command->getCronExpr()));
+        $this->output->writeln(sprintf('%s will be run [%s]', $command->getName(), $command->getCronExpr()));
 
         return true;
     }
