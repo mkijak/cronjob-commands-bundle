@@ -41,8 +41,8 @@ final class CommandSchedule
     private function isDue(Command $command, \DateTime $time)
     {
         if (!CronExpression::isValidExpression($command->getCronExpr())) {
-            $this->output->writeln(sprintf('<error>[%s] is not a valid cron expression (%s)</error>',
-                $command->getCronExpr(), $command->getName()), OutputInterface::VERBOSITY_QUIET);
+            $this->output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
+                $command->getName(), $command->getCronExpr()), OutputInterface::VERBOSITY_QUIET);
 
             return false;
         }
