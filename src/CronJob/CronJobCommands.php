@@ -64,8 +64,6 @@ final class CronJobCommands
         foreach ($this->commandSchedule->loadCommandsToRun($time, $this->output) as $command) {
             $this->runCommand($command);
         }
-
-        $this->output->writeln(sprintf(PHP_EOL . '<info>!! CronJobCommands ends here !!</info>' . PHP_EOL));
     }
 
     private function runCommand(Command $command)
