@@ -73,7 +73,7 @@ final class CronJobCommands
         $this->output->writeln('');
         $this->output->writeln(sprintf('<bg=yellow;options=bold>%s</>', $command->getName()));
 
-        $argsAsArray = $optsAsArray = [];
+        $argsAsArray = $optsAsArray = $multivOptsAsArray = [];
 
         /** @var CommandArgument $argument */
         foreach ($command->getArguments() as $argument) {
@@ -85,8 +85,13 @@ final class CronJobCommands
             $optsAsArray[$option->getNameWithMinusPrefix()] = $option->getValue();
         }
 
+        /** @var CommandOption $option */
+        foreach ($command->getMultivalueOptions() as $option) {
+            $multivOptsAsArray[$option->getNameWithMinusPrefix()] = $option->getValue();
+        }
+
         try {
-            $this->commandRunner->run($command->getName(), $argsAsArray, $optsAsArray, $this->output);
+            $this->commandRunner->run($command->getName(), $argsAsArray, $optsAsArray, $multivOptsAsArray, $this->output);
         } catch (\Exception $exception) {
             $this->output->writeln(
                 sprintf('<error>Exception [%s]: %s</error>', get_class($exception), $exception->getMessage()),

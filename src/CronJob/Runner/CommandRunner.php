@@ -28,17 +28,18 @@ final class CommandRunner
     }
 
     /**
-     * @param string          $commandName  your:command:name
-     * @param array           $arguments    ['argument-name' => 'argument-value', 'argument2-name' => 'argument2-value']
-     * @param array           $options      ['--option-name' => 'option-value', '--option2-name' => 'option2-value']
-     * @param OutputInterface $output       For output
+     * @param string          $commandName       your:command:name
+     * @param array           $arguments         ['argument-name' => 'argument-value', 'argument2-name' => 'argument2-value']
+     * @param array           $options           ['--option-name' => 'option-value', '--option2-name' => 'option2-value']
+     * @param array           $multivalueOptions ['--option-name' => ['option-value1', 'option-value2'], '--option2-name' => ['option2-value']]
+     * @param OutputInterface $output            For output
      *
      * @return void
      */
-    public function run(string $commandName, array $arguments = [], array $options = [], OutputInterface $output = null)
+    public function run(string $commandName, array $arguments = [], array $options = [], array $multivalueOptions, OutputInterface $output = null)
     {
         $commandParamPart = ['command' => $commandName];
-        $params = array_merge($commandParamPart, $arguments, $options);
+        $params = array_merge($commandParamPart, $arguments, array_merge($options, $multivalueOptions));
 
         $input = new ArrayInput($params);
 
