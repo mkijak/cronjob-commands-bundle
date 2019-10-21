@@ -1,5 +1,5 @@
 ### 1.1.0
-_2019-10-17_
+_2019-10-21_
 
   * Added support for options allowing for multiple values
   * Added changelog
