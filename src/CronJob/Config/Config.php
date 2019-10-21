@@ -52,17 +52,21 @@ final class Config
      */
     private function prepareCommand(array $array): Command
     {
-        $args = $opts = [];
+        $args = $opts = $multiVOpts = [];
 
         foreach ($array['arguments'] as $name => $value) {
-            $args[] = new CommandArgument($name, $value);;
+            $args[] = new CommandArgument($name, $value);
         }
 
         foreach ($array['options'] as $name => $value) {
-            $opts[] = new CommandOption($name, $value);;
+            $opts[] = new CommandOption($name, $value);
         }
 
-        return new Command($array['name'], $array['cron_expression'], $args, $opts);
+        foreach ($array['multivalue_options'] as $name => $value) {
+            $multiVOpts[] = new CommandOption($name, $value);
+        }
+
+        return new Command($array['name'], $array['cron_expression'], $args, $opts, $multiVOpts);
     }
 
     private function validateConfig()

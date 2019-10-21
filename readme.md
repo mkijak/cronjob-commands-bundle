@@ -40,6 +40,12 @@ cron_job_commands:
             options:
                 option1name: value
                 option2name: value
+            multivalue_options:
+                option1name:
+                    - value1
+                    - value2
+                option2name:
+                    - value1
         command2:
             name: app:another_command
             cron_expression: "@daily"

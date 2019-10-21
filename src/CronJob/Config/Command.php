@@ -20,19 +20,25 @@ final class Command
      * @var array|CommandOption[]
      */
     private $options;
+    /**
+     * @var array|CommandOption[]
+     */
+    private $multivalueOptions;
 
     /**
      * @param string $name
      * @param string $cronExpr
      * @param array|CommandArgument[] $arguments
      * @param array|CommandOption[] $options
+     * @param array|CommandOption[] $multivalueOptions
      */
-    public function __construct(string $name, string $cronExpr, array $arguments, array $options)
+    public function __construct(string $name, string $cronExpr, array $arguments, array $options, array $multivalueOptions)
     {
         $this->name = $name;
         $this->cronExpr = $cronExpr;
         $this->arguments = $arguments;
         $this->options = $options;
+        $this->multivalueOptions = $multivalueOptions;
     }
 
     /**
@@ -65,5 +71,13 @@ final class Command
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    /**
+     * @return array|CommandOption[]
+     */
+    public function getMultivalueOptions()
+    {
+        return $this->multivalueOptions;
     }
 }
