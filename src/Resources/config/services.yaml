@@ -30,3 +30,5 @@ services:
         class: Mkijak\CronJobCommandsBundle\Command\CronTriggerCommand
         tags:
             - { name: 'console.command', command: 'cron_commands:trigger' }
+        arguments:
+            $cron: '@Mkijak\CronJobCommandsBundle\CronJob\CronJobCommands'
