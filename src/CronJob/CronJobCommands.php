@@ -9,8 +9,8 @@ use Mkijak\CronJobCommandsBundle\CronJob\Config\Config;
 use Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner;
 use Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Tests\Fixtures\DummyOutput;
 
 final class CronJobCommands
 {
@@ -41,7 +41,7 @@ final class CronJobCommands
         $this->config = $config;
         $this->commandSchedule = $commandSchedule;
         $this->commandRunner = $commandRunner;
-        $this->output = new DummyOutput();
+        $this->output = new NullOutput();
     }
 
     /**
