@@ -1,4 +1,4 @@
-### 2.0
+### 1.2
 _2020-07-07_
 
   * Allowed dragonmantank/cron-expression ~3 - please review its changelong for potential incompatibility: https://github.com/dragonmantank/cron-expression/blob/master/CHANGELOG.md
