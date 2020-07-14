@@ -66,7 +66,7 @@ final class Config
             $multiVOpts[] = new CommandOption($name, $value);
         }
 
-        return new Command($array['name'], $array['cron_expression'], $args, $opts, $multiVOpts);
+        return new Command($array['name'], $array['cron_expression'], $args, $opts, $multiVOpts, $array['enabled']);
     }
 
     private function validateConfig()
