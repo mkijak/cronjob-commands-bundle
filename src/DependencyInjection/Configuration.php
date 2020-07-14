@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             ->scalarNode('name')->cannotBeEmpty()->end()
-                            ->booleanNode('enabled')->cannotBeEmpty()->defaultTrue()
+                            ->booleanNode('enabled')->defaultTrue()->end()
                             ->scalarNode('cron_expression')->cannotBeEmpty()->end()
                             ->arrayNode('arguments')
                                 ->prototype('scalar')->end()
