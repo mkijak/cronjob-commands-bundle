@@ -1,7 +1,7 @@
 Symfony commands as cron jobs
 ==========================
 
-Using this bundle you can manage cron jobs using yaml configuration of your Symfony application.
+Using this bundle you can manage cron jobs with yaml configuration of your Symfony application.
 
 It: 
 * provides a simple way of running commands according to cron expressions
@@ -32,8 +32,8 @@ cron_job_commands:
     timezone: UTC
     schedule:
         command1:
-            name: app:command
-            enabled: true
+            name: app:command #command name registered in symfony
+            enabled: true #default: true
             cron_expression: "* * * * *" #supports also predefined keywords e. g. "@daily", see https://github.com/dragonmantank/cron-expression
             arguments:
                 argument1name: value
