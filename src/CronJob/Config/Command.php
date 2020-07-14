@@ -24,6 +24,10 @@ final class Command
      * @var array|CommandOption[]
      */
     private $multivalueOptions;
+    /**
+     * @var bool
+     */
+    private $enabled;
 
     /**
      * @param string $name
@@ -31,14 +35,21 @@ final class Command
      * @param array|CommandArgument[] $arguments
      * @param array|CommandOption[] $options
      * @param array|CommandOption[] $multivalueOptions
+     * @param bool $enabled
      */
-    public function __construct(string $name, string $cronExpr, array $arguments, array $options, array $multivalueOptions)
-    {
+    public function __construct(
+        string $name,
+        string $cronExpr,
+        array $arguments,
+        array $options,
+        array $multivalueOptions,
+        bool $enabled) {
         $this->name = $name;
         $this->cronExpr = $cronExpr;
         $this->arguments = $arguments;
         $this->options = $options;
         $this->multivalueOptions = $multivalueOptions;
+        $this->enabled = $enabled;
     }
 
     /**
@@ -79,5 +90,13 @@ final class Command
     public function getMultivalueOptions()
     {
         return $this->multivalueOptions;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
     }
 }

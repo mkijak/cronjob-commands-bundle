@@ -33,6 +33,7 @@ cron_job_commands:
     schedule:
         command1:
             name: app:command
+            enabled: true
             cron_expression: "* * * * *" #supports also predefined keywords e. g. "@daily", see https://github.com/dragonmantank/cron-expression
             arguments:
                 argument1name: value

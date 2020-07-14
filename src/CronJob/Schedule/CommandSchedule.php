@@ -49,8 +49,11 @@ final class CommandSchedule
 
         $exprInterpreter = CronExpression::factory($command->getCronExpr());
 
-        if (!$exprInterpreter->isDue($time)) {
-            $this->output->writeln(sprintf('%s will be skipped [%s]', $command->getName(), $command->getCronExpr()));
+        if (!$command->isEnabled() || !$exprInterpreter->isDue($time)) {
+            $this->output->writeln(sprintf('%s will be skipped [%s] [enabled: %s]',
+                                           $command->getName(),
+                                           $command->getCronExpr(),
+                                           $command->isEnabled() ? 'true' : 'false'));
 
             return false;
         }

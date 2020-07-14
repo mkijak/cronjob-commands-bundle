@@ -1,3 +1,8 @@
+### 1.3
+_2020-07-14_
+
+  * Added `enabled` option (to commands) which makes managing schedule with a local configuration easier
+
 ### 1.2
 _2020-07-07_
 
