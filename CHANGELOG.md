@@ -1,3 +1,9 @@
+### 1.4
+_2022-01-05_
+
+  * Added optional optional LoggerInterface to the command
+  * support for php 8
+
 ### 1.3
 _2020-07-14_
 
