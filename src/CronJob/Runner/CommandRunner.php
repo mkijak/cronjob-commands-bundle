@@ -4,9 +4,7 @@ namespace Mkijak\CronJobCommandsBundle\CronJob\Runner;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Tests\Fixtures\DummyOutput;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
