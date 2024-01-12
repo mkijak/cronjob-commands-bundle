@@ -35,7 +35,7 @@ final class CronTriggerCommand extends Command
         $this->logger = $logger;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Processes command schedule and runs commands according to configuration')
@@ -43,7 +43,7 @@ final class CronTriggerCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if($lockOthers = $input->getOption('lock')) {
             if(!$this->lock()) {
@@ -53,7 +53,7 @@ final class CronTriggerCommand extends Command
 
                 $output->writeln('Cron job already running, skipping current process');
 
-                return 0;
+                return self::SUCCESS;
             }
         }
 
@@ -73,6 +73,6 @@ final class CronTriggerCommand extends Command
             $this->release();
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 }
