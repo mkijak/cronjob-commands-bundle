@@ -6,24 +6,10 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 final class Config
 {
-    /**
-     * @var string
-     */
-    private $timezone;
-    /**
-     * @var array
-     */
-    private $commands;
-
-    /**
-     * @param string $timezone
-     * @param array $commands
-     */
-    public function __construct(string $timezone = null, array $commands = [])
-    {
-        $this->timezone = $timezone;
-        $this->commands = $commands;
-
+    public function __construct(
+        private ?string $timezone = null,
+        private array $commands = [],
+    ) {
         $this->validateConfig();
     }
 
@@ -69,7 +55,7 @@ final class Config
         return new Command($array['name'], $array['cron_expression'], $args, $opts, $multiVOpts, $array['enabled']);
     }
 
-    private function validateConfig()
+    private function validateConfig(): void
     {
         try {
             new \DateTimeZone($this->timezone());

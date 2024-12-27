@@ -4,23 +4,8 @@ namespace Mkijak\CronJobCommandsBundle\CronJob\Config;
 
 final class CommandOption
 {
-    /**
-     * @var string
-     */
-    private $name;
-    /**
-     * @var mixed
-     */
-    private $value;
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     */
-    public function __construct(string $name, $value)
+    public function __construct(private string $name, private mixed $value)
     {
-        $this->name = $name;
-        $this->value = $value;
     }
 
     /**
@@ -34,7 +19,7 @@ final class CommandOption
     /**
      * @return mixed
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

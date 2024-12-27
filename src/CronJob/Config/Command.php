@@ -5,31 +5,6 @@ namespace Mkijak\CronJobCommandsBundle\CronJob\Config;
 final class Command
 {
     /**
-     * @var string
-     */
-    private $name;
-    /**
-     * @var string
-     */
-    private $cronExpr;
-    /**
-     * @var array|CommandArgument[]
-     */
-    private $arguments;
-    /**
-     * @var array|CommandOption[]
-     */
-    private $options;
-    /**
-     * @var array|CommandOption[]
-     */
-    private $multivalueOptions;
-    /**
-     * @var bool
-     */
-    private $enabled;
-
-    /**
      * @param string $name
      * @param string $cronExpr
      * @param array|CommandArgument[] $arguments
@@ -38,18 +13,13 @@ final class Command
      * @param bool $enabled
      */
     public function __construct(
-        string $name,
-        string $cronExpr,
-        array $arguments,
-        array $options,
-        array $multivalueOptions,
-        bool $enabled) {
-        $this->name = $name;
-        $this->cronExpr = $cronExpr;
-        $this->arguments = $arguments;
-        $this->options = $options;
-        $this->multivalueOptions = $multivalueOptions;
-        $this->enabled = $enabled;
+        private string $name,
+        private string $cronExpr,
+        private array $arguments,
+        private array $options,
+        private array $multivalueOptions,
+        private bool $enabled,
+    ) {
     }
 
     /**
