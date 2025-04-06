@@ -8,39 +8,18 @@ use Mkijak\CronJobCommandsBundle\CronJob\Config\CommandOption;
 use Mkijak\CronJobCommandsBundle\CronJob\Config\Config;
 use Mkijak\CronJobCommandsBundle\CronJob\Runner\CommandRunner;
 use Mkijak\CronJobCommandsBundle\CronJob\Schedule\CommandSchedule;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class CronJobCommands
 {
-    /**
-     * @var Config
-     */
-    private $config;
-    /**
-     * @var CommandSchedule
-     */
-    private $commandSchedule;
-    /**
-     * @var CommandRunner
-     */
-    private $commandRunner;
-    /**
-     * @var OutputInterface
-     */
-    private $output;
+    private OutputInterface $output;
 
-    /**
-     * @param Config $config
-     * @param CommandSchedule $commandSchedule
-     * @param CommandRunner $commandRunner
-     */
-    public function __construct(Config $config, CommandSchedule $commandSchedule, CommandRunner $commandRunner)
-    {
-        $this->config = $config;
-        $this->commandSchedule = $commandSchedule;
-        $this->commandRunner = $commandRunner;
+    public function __construct(
+        private Config $config,
+        private CommandSchedule $commandSchedule,
+        private CommandRunner $commandRunner,
+    ) {
         $this->output = new NullOutput();
     }
 
@@ -49,7 +28,7 @@ final class CronJobCommands
      * @param OutputInterface|null $output           If set to null DummyOutput will be used -
      *                                               you won't even see exceptions thrown by the commands
      */
-    public function runCommands(\DateTime $timeToCheckAgainst = null, OutputInterface $output = null)
+    public function runCommands(?\DateTime $timeToCheckAgainst = null, ?OutputInterface $output = null): void
     {
         if ($output) {
             $this->output = $output;
@@ -66,7 +45,7 @@ final class CronJobCommands
         }
     }
 
-    private function runCommand(Command $command)
+    private function runCommand(Command $command): void
     {
         $this->output->writeln('');
         $this->output->writeln(sprintf('<bg=yellow;options=bold>%s</>', $command->getName()));

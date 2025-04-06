@@ -1,7 +1,19 @@
+### 2.0
+_2025-04-06_
+
+  * dropped php7 support
+  * dropped symfony4 support
+  * fixed php8.4 deprecations
+
+### 1.6
+_2024-09-24_
+
+  * added symfony 7 support
+
 ### 1.5
 _2023-03-13_
 
-* support for symfony 6
+  * support for symfony 6
 
 ### 1.4
 _2022-01-05_

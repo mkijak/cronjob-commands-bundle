@@ -34,8 +34,13 @@ final class CommandRunner
      *
      * @return void
      */
-    public function run(string $commandName, array $arguments = [], array $options = [], array $multivalueOptions = [], OutputInterface $output = null)
-    {
+    public function run(
+        string $commandName,
+        array $arguments = [],
+        array $options = [],
+        array $multivalueOptions = [],
+        ?OutputInterface $output = null,
+    ): void {
         $commandParamPart = ['command' => $commandName];
         $params = array_merge($commandParamPart, $arguments, array_merge($options, $multivalueOptions));
 

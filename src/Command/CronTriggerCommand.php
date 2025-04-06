@@ -14,25 +14,9 @@ final class CronTriggerCommand extends Command
 {
     use LockableTrait;
 
-    /**
-     * @var CronJobCommands
-     */
-    private $cron;
-    /**
-     * @var LoggerInterface|null
-     */
-    private $logger;
-
-    /**
-     * @param CronJobCommands $cron
-     * @param LoggerInterface|null $logger
-     */
-    public function __construct(CronJobCommands $cron, ?LoggerInterface $logger = null)
+    public function __construct(private CronJobCommands $cron, private ?LoggerInterface $logger = null)
     {
         parent::__construct(null);
-
-        $this->cron = $cron;
-        $this->logger = $logger;
     }
 
     protected function configure(): void

@@ -10,20 +10,15 @@ use Cron\CronExpression;
 final class CommandSchedule
 {
     /**
-     * @var Config
-     */
-    private $config;
-    /**
      * @var OutputInterface
      */
     private $output;
 
-    public function __construct(Config $config)
+    public function __construct(private Config $config)
     {
-        $this->config = $config;
     }
 
-    public function loadCommandsToRun(\DateTime $time, OutputInterface $output)
+    public function loadCommandsToRun(\DateTime $time, OutputInterface $output): array
     {
         $this->output = $output;
 
@@ -38,7 +33,7 @@ final class CommandSchedule
         return $cmds;
     }
 
-    private function isDue(Command $command, \DateTime $time)
+    private function isDue(Command $command, \DateTime $time): bool
     {
         if (!CronExpression::isValidExpression($command->getCronExpr())) {
             $this->output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
