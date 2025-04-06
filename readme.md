@@ -74,8 +74,8 @@ $output->writeln('<error>Message</error>', OutputInterface::VERBOSITY_QUIET)
 Requirements
 ==========================
 
-* PHP 7.1 or above
-* Symfony 4.0 or newer
+* PHP 8.0 or above
+* Symfony 5.0 or newer
 
 Licence
 ==========================
