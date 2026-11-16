@@ -53,7 +53,8 @@ cron_job_commands:
 Option values may be scalars or arrays of scalars, given directly or as env placeholders. As env placeholders are
 resolved at runtime, the values are validated when the schedule is loaded.
 
-`multivalue_options` (same format as array values in `options`) are still supported for compatibility.
+`multivalue_options` (same format as array values in `options`) are deprecated and will be removed in 3.0 - put arrays
+of values directly in `options` instead.
 
 Usage
 ==========================

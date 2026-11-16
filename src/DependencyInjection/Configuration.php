@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
                             ->arrayNode('options')
                                 ->prototype('variable')->end()
                             ->end()
-                            // kept for compatibility - options accept arrays of values as well
+                            // deprecated, to be removed in 3.0 - options accept arrays of values as well
                             ->arrayNode('multivalue_options')
                                 ->prototype('variable')->end()
                             ->end()

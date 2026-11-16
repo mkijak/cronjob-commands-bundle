@@ -75,6 +75,14 @@ final class Config
                 }
             }
 
+            if (!empty($command['multivalue_options'])) {
+                @trigger_error(sprintf(
+                    'Using "multivalue_options" (command "%s") is deprecated and will be removed in '
+                    . 'mkijak/cronjob-commands-bundle 3.0, put arrays of values directly in "options" instead.',
+                    $commandKey,
+                ), E_USER_DEPRECATED);
+            }
+
             foreach ($command['multivalue_options'] ?? [] as $name => $values) {
                 if (!$this->isArrayOfScalars($values)) {
                     throw new InvalidConfigurationException(sprintf(
