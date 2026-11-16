@@ -62,5 +62,34 @@ final class Config
         } catch (\Exception $exception) {
             throw new InvalidConfigurationException('Invalid timezone provided in config - please use timezone string supported by DateTimezone constructor: https://secure.php.net/manual/class.datetimezone.php');
         }
+
+        foreach ($this->commands as $commandKey => $command) {
+            foreach ($command['options'] ?? [] as $name => $value) {
+                if ($value !== null && !is_scalar($value) && !$this->isArrayOfScalars($value)) {
+                    throw new InvalidConfigurationException(sprintf(
+                        'Invalid value of option "%s" of command "%s" - expected a scalar or an array of scalar values, got %s',
+                        $name,
+                        $commandKey,
+                        json_encode($value),
+                    ));
+                }
+            }
+
+            foreach ($command['multivalue_options'] ?? [] as $name => $values) {
+                if (!$this->isArrayOfScalars($values)) {
+                    throw new InvalidConfigurationException(sprintf(
+                        'Invalid value of multivalue option "%s" of command "%s" - expected an array of scalar values, got %s',
+                        $name,
+                        $commandKey,
+                        json_encode($values),
+                    ));
+                }
+            }
+        }
+    }
+
+    private function isArrayOfScalars(mixed $value): bool
+    {
+        return is_array($value) && !array_filter($value, fn($v) => !is_scalar($v));
     }
 }

@@ -41,16 +41,19 @@ cron_job_commands:
             options:
                 option1name: value
                 option2name: value
-            multivalue_options:
-                option1name:
+                option3name: # option accepting multiple values (InputOption::VALUE_IS_ARRAY)
                     - value1
                     - value2
-                option2name:
-                    - value1
+                option4name: '%env(json:OPTION4_VALUES)%' # e.g. OPTION4_VALUES='["value1","value2"]'
         command2:
             name: app:another_command
             cron_expression: "@daily"
 ```
+
+Option values may be scalars or arrays of scalars, given directly or as env placeholders. As env placeholders are
+resolved at runtime, the values are validated when the schedule is loaded.
+
+`multivalue_options` (same format as array values in `options`) are still supported for compatibility.
 
 Usage
 ==========================

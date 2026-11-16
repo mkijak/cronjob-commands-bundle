@@ -24,13 +24,15 @@ class Configuration implements ConfigurationInterface
                             ->arrayNode('arguments')
                                 ->prototype('scalar')->end()
                             ->end()
+                            // option value: a scalar or an array of scalars (for options accepting multiple values),
+                            // given directly or as an env placeholder, e.g. '%env(json:VARIABLE)%';
+                            // values are validated when the config is loaded, as env placeholders resolve at runtime
                             ->arrayNode('options')
-                                ->prototype('scalar')->end()
+                                ->prototype('variable')->end()
                             ->end()
+                            // kept for compatibility - options accept arrays of values as well
                             ->arrayNode('multivalue_options')
-                                ->prototype('array')
-                                    ->prototype('scalar')->end()
-                                ->end()
+                                ->prototype('variable')->end()
                             ->end()
                         ->end()
                     ->end()
